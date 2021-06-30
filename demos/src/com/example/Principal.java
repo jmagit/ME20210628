@@ -194,30 +194,30 @@ public class Principal {
 			int numeroIntroducido;
 			int intentos = 0;
 			boolean encontrado = false;
-			// System.out.print("El numero: " + numeroBuscado);
+			// System.out.print("El número: " + numeroBuscado);
 			do {
 				try {
-					System.out.print("Dame tu numero (" + (intentos + 1) + " de 10): ");
+					System.out.print("Dame tu número (" + (intentos + 1) + " de 10): ");
 					numeroIntroducido = Integer.parseInt(leer());
 					intentos += 1;
 					if (numeroBuscado == numeroIntroducido) {
 						encontrado = true;
 					} else if (numeroBuscado > numeroIntroducido) {
-						System.out.println("Mi nï¿½mero es mayor.");
+						System.out.println("Mi número es mayor.");
 					} else {
-						System.out.println("Mi nï¿½mero es menor.");
+						System.out.println("Mi número es menor.");
 					}
 				} catch (Exception ex) {
-					// System.out.println("No es un nï¿½mero valido.");
+					// System.out.println("No es un número valido.");
 				}
 			} while (intentos < 10 && !encontrado);
 
 			if (encontrado) {
 				System.out.println("Bieeen!!! Acertaste.");
 			} else {
-				System.out.println("Upsss! Se acabaron los intentos, el nï¿½mero era el " + numeroBuscado);
+				System.out.println("Upsss! Se acabaron los intentos, el número era el " + numeroBuscado);
 			}
-			System.out.println("ï¿½Otra? [S/N]");
+			System.out.println("¿Otra? [S/N]");
 		} while ("s".compareToIgnoreCase(leer()) == 0);
 	}
 
