@@ -203,21 +203,21 @@ public class Principal {
 					if (numeroBuscado == numeroIntroducido) {
 						encontrado = true;
 					} else if (numeroBuscado > numeroIntroducido) {
-						System.out.println("Mi número es mayor.");
+						System.out.println("Mi nï¿½mero es mayor.");
 					} else {
-						System.out.println("Mi número es menor.");
+						System.out.println("Mi nï¿½mero es menor.");
 					}
 				} catch (Exception ex) {
-					// System.out.println("No es un número valido.");
+					// System.out.println("No es un nï¿½mero valido.");
 				}
 			} while (intentos < 10 && !encontrado);
 
 			if (encontrado) {
 				System.out.println("Bieeen!!! Acertaste.");
 			} else {
-				System.out.println("Upsss! Se acabaron los intentos, el número era el " + numeroBuscado);
+				System.out.println("Upsss! Se acabaron los intentos, el nï¿½mero era el " + numeroBuscado);
 			}
-			System.out.println("¿Otra? [S/N]");
+			System.out.println("ï¿½Otra? [S/N]");
 		} while ("s".compareToIgnoreCase(leer()) == 0);
 	}
 
