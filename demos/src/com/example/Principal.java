@@ -1,7 +1,10 @@
 package com.example;
 
+import java.sql.Array;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 /**
  * Clase lanzadora de los ejemplos del curso de Java
@@ -18,10 +21,48 @@ public class Principal {
 	 */
 	public static void main(String[] args) {
 		//juega();
-		calcula("3 + 4+3,4-7*1=");
+		//calcula("3+4+3,4-7*1=");
+		calculaRegEx("3+4+3,4-7*1=");
+		System.out.println();
+
+	}
+	public static void ejemplos2() {
+		Genero genero = Genero.DESCONOCIDO;
+		if(genero == Genero.FEMENINO) {
+			
+		}
+		Principal principal = new Principal();
+		int i = 1, j = 2;
+		principal.suma((double)i, j);
+//		principal.suma();
+//		principal.suma(1);
+		double rslt = principal.suma("2", "2") +
+		principal.suma(1, 2, principal.suma((double)i, j), 4, 5) * 4;
+		Persona p = new Persona();
+		
+		p.getFechaNacimiento().setYear(2030);
+		//p.nombre="kk";
+	}
+	
+	public double suma(double a, double b, double... lst) {
+		double rslt = a + b;
+		for(double valor: lst) {
+			// if(rslt > 100) return 100;
+			rslt += valor;
+		}
+		return rslt;
+	}
+	public double suma(int a, int b) {
+		return a + b;
+	}
+	public double suma(double a, double b) {
+		return a + b;
+	}
+	public double suma(String a, String b) {
+		return suma(Double.parseDouble(a), Double.parseDouble(b));
 	}
 
-	public static void ejemplos() {
+	public static void ejemplos1() {
 //		int i, j;
 //		var x = "algo";
 //		long l = 4;
@@ -182,6 +223,8 @@ public class Principal {
 
 	public static double calcula(String expresion) {
 		String operando = "";
+		
+		//"([0-9,]+)|([+-/*=])"
 		for (int i = 0; i < expresion.length(); i++) {
 			char ch = expresion.charAt(i);
 			if (Character.isDigit(ch)) { // '0' <= ch && ch <='9'
@@ -206,6 +249,13 @@ public class Principal {
 			}
 		}
 		return 0;
+	}
+	private static void calculaRegEx(String expresion) {
+		var pattern =Pattern.compile("\\s*([0-9,]+)\\s*([+-/*=])", Pattern.MULTILINE);
+	    var matcher = pattern.matcher(expresion);
+	    while(matcher.find()) {
+	    	System.out.println(matcher.group(1) + " " + matcher.group(2));
+	    }
 	}
 
 }
