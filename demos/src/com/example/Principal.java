@@ -20,58 +20,63 @@ public class Principal {
 	 * @param args Linea de comandos
 	 */
 	public static void main(String[] args) {
-		//juega();
-		//calcula("3+4+3,4-7*1=");
-		//calculaRegEx("3+4+3,4-7*1=");
-		ejemplos3();
+		// juega();
+		// calcula("3+4+3,4-7*1=");
+		// calculaRegEx("3+4+3,4-7*1=");
+		// ejemplos3();
+		juegaConClase();
 
 	}
+
 	public static void ejemplos3() {
-		//Persona p = new Persona(1, "Pepito");
+		// Persona p = new Persona(1, "Pepito");
 	}
+
 	public static void ejemplos2() {
 		Genero genero = Genero.DESCONOCIDO;
-		if(genero == Genero.FEMENINO) {
-			
+		if (genero == Genero.FEMENINO) {
+
 		}
-		
+
 		Principal principal = new Principal();
 		int i = 1, j = 2;
-		principal.suma((double)i, j);
+		principal.suma((double) i, j);
 //		principal.suma();
 //		principal.suma(1);
-		double rslt = principal.suma("2", "2") +
-		principal.suma(1, 2, principal.suma((double)i, j), 4, 5) * 4;
+		double rslt = principal.suma("2", "2") + principal.suma(1, 2, principal.suma((double) i, j), 4, 5) * 4;
 		Persona p = new Alumno();
-		if(p instanceof Alumno)
-			((Alumno)p).suspende();
+		if (p instanceof Alumno)
+			((Alumno) p).suspende();
 		p.getFechaNacimiento().setYear(2030);
 		Grafico a = null;
 		a = new Figura();
 		a = new Alumno();
 		a.pintate();
-		Object object = new Profesor(1,	"Profe");
-		if(object instanceof Grafico) {
-			((Grafico)object).pintate();
+		Object object = new Profesor(1, "Profe");
+		if (object instanceof Grafico) {
+			((Grafico) object).pintate();
 		}
-		//p.nombre="kk";
+		// p.nombre="kk";
 		Servicio srv = new Circulo();
 	}
-	
+
 	public double suma(double a, double b, double... lst) {
 		double rslt = a + b;
-		for(double valor: lst) {
+		for (double valor : lst) {
 			// if(rslt > 100) return 100;
 			rslt += valor;
 		}
 		return rslt;
 	}
+
 	public double suma(int a, int b) {
 		return a + b;
 	}
+
 	public double suma(double a, double b) {
 		return a + b;
 	}
+
 	public double suma(String a, String b) {
 		return suma(Double.parseDouble(a), Double.parseDouble(b));
 	}
@@ -201,6 +206,29 @@ public class Principal {
 		return teclado.nextLine();
 	}
 
+	public static void juegaConClase() {
+		JuegoNumeros j = new JuegoNumeros();
+		do {
+			j.inicializa();
+			// System.out.print("El número: " + numeroBuscado);
+			do {
+				try {
+					System.out.print("Dame tu número (" + (j.getIntentos() + 1) + " de 10): ");
+					System.out.println(j.juega(Integer.parseInt(leer())));
+				} catch (Exception ex) {
+					// System.out.println("No es un número valido.");
+				}
+			} while (j.deboSeguir());
+
+			if (j.heGanado()) {
+				System.out.println("Bieeen!!! Acertaste.");
+			} else {
+				System.out.println("Upsss! Se acabaron los intentos, el número era el " + j.getNumeroBuscado());
+			}
+			System.out.println("¿Otra? [S/N]");
+		} while ("s".compareToIgnoreCase(leer()) == 0);
+	}
+
 	public static void juega() {
 		do {
 			var rnd = new Random();
@@ -237,8 +265,8 @@ public class Principal {
 
 	public static double calcula(String expresion) {
 		String operando = "";
-		
-		//"([0-9,]+)|([+-/*=])"
+
+		// "([0-9,]+)|([+-/*=])"
 		for (int i = 0; i < expresion.length(); i++) {
 			char ch = expresion.charAt(i);
 			if (Character.isDigit(ch)) { // '0' <= ch && ch <='9'
@@ -264,12 +292,13 @@ public class Principal {
 		}
 		return 0;
 	}
+
 	private static void calculaRegEx(String expresion) {
-		var pattern =Pattern.compile("\\s*([0-9,]+)\\s*([+-/*=])", Pattern.MULTILINE);
-	    var matcher = pattern.matcher(expresion);
-	    while(matcher.find()) {
-	    	System.out.println(matcher.group(1) + " " + matcher.group(2));
-	    }
-	} 
+		var pattern = Pattern.compile("\\s*([0-9,]+)\\s*([+-/*=])", Pattern.MULTILINE);
+		var matcher = pattern.matcher(expresion);
+		while (matcher.find()) {
+			System.out.println(matcher.group(1) + " " + matcher.group(2));
+		}
+	}
 
 }
