@@ -22,15 +22,19 @@ public class Principal {
 	public static void main(String[] args) {
 		//juega();
 		//calcula("3+4+3,4-7*1=");
-		calculaRegEx("3+4+3,4-7*1=");
-		System.out.println();
+		//calculaRegEx("3+4+3,4-7*1=");
+		ejemplos3();
 
+	}
+	public static void ejemplos3() {
+		//Persona p = new Persona(1, "Pepito");
 	}
 	public static void ejemplos2() {
 		Genero genero = Genero.DESCONOCIDO;
 		if(genero == Genero.FEMENINO) {
 			
 		}
+		
 		Principal principal = new Principal();
 		int i = 1, j = 2;
 		principal.suma((double)i, j);
@@ -38,10 +42,20 @@ public class Principal {
 //		principal.suma(1);
 		double rslt = principal.suma("2", "2") +
 		principal.suma(1, 2, principal.suma((double)i, j), 4, 5) * 4;
-		Persona p = new Persona();
-		
+		Persona p = new Alumno();
+		if(p instanceof Alumno)
+			((Alumno)p).suspende();
 		p.getFechaNacimiento().setYear(2030);
+		Grafico a = null;
+		a = new Figura();
+		a = new Alumno();
+		a.pintate();
+		Object object = new Profesor(1,	"Profe");
+		if(object instanceof Grafico) {
+			((Grafico)object).pintate();
+		}
 		//p.nombre="kk";
+		Servicio srv = new Circulo();
 	}
 	
 	public double suma(double a, double b, double... lst) {
