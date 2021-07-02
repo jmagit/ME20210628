@@ -14,8 +14,10 @@ public class Movimiento {
 	public Movimiento(String movimiento) throws JuegoException {
 		if(movimiento == null || !movimiento.matches("^([A-H][1-8]){2}$"))
 			throw new JuegoException("El movimiento no está en notación internacional.");
+		if(movimiento.substring(0, 1).equals(movimiento.substring(2, 3)))
+			throw new JuegoException("La posición inicial debe ser distinta de la posición final.");
 		posicionInicial = new Posicion(movimiento.charAt(1), movimiento.charAt(0));	
-		posicionInicial = new Posicion(movimiento.charAt(3), movimiento.charAt(2));	
+		posicionFinal = new Posicion(movimiento.charAt(3), movimiento.charAt(2));	
 	}
 	
 	/**
@@ -35,7 +37,7 @@ public class Movimiento {
 	 * Obtiene la posición de partida del movimiento
 	 * @return Posición inicial
 	 */
-	public Posicion getPosicionInicia() {
+	public Posicion getPosicionInicial() {
 		return posicionInicial;
 	}
 
