@@ -1,10 +1,18 @@
 package com.example;
 
-import java.sql.Array;
-import java.util.List;
 import java.util.Random;
-import java.util.Scanner;
 import java.util.regex.Pattern;
+
+import com.example.demos.clases.Alumno;
+import com.example.demos.clases.Circulo;
+import com.example.demos.clases.Figura;
+import com.example.demos.clases.Persona;
+import com.example.demos.clases.Profesor;
+import com.example.demos.interfaces.Grafico;
+import com.example.demos.interfaces.Servicio;
+import com.example.juegos.JuegoException;
+import com.example.juegos.JuegoNumeros;
+import com.example.juegos.ajedrez.Posicion;
 
 /**
  * Clase lanzadora de los ejemplos del curso de Java
@@ -24,8 +32,22 @@ public class Principal {
 		// calcula("3+4+3,4-7*1=");
 		// calculaRegEx("3+4+3,4-7*1=");
 		// ejemplos3();
-		juegaConClase();
+		ajedrez();
 
+	}
+
+	public static void ajedrez() {
+		Posicion posicion;
+		try {
+			//posicion = new Posicion(0, 0);
+			posicion = new Posicion(1, 1);
+			posicion = new Posicion('1', 'A');
+			System.out.println(posicion);
+		} catch (JuegoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 	public static void ejemplos3() {
@@ -215,8 +237,11 @@ public class Principal {
 				try {
 					System.out.print("Dame tu número (" + (j.getIntentos() + 1) + " de 10): ");
 					System.out.println(j.juega(Integer.parseInt(leer())));
-				} catch (Exception ex) {
-					// System.out.println("No es un número valido.");
+				} catch (JuegoException ex) {
+					System.out.println(ex.getMessage());
+				} catch (NumberFormatException ex) {
+					System.out.println("No es un número valido.");
+					// throw new JuegoException("mal el numero", ex);
 				}
 			} while (j.deboSeguir());
 

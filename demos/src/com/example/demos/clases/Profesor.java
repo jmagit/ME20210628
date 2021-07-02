@@ -1,4 +1,4 @@
-package com.example;
+package com.example.demos.clases;
 
 public class Profesor extends Persona {
 

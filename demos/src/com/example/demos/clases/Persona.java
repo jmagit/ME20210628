@@ -1,6 +1,8 @@
-package com.example;
+package com.example.demos.clases;
 
 import java.util.Date;
+
+import com.example.demos.interfaces.Alimentarse;
 
 public abstract class Persona implements Alimentarse {
 	public static final String PREFIJO = "p";

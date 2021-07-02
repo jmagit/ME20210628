@@ -1,4 +1,6 @@
-package com.example;
+package com.example.demos.interfaces;
+
+import com.example.demos.clases.Persona;
 
 public interface Servicio {
 

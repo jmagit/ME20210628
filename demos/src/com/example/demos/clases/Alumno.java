@@ -1,4 +1,6 @@
-package com.example;
+package com.example.demos.clases;
+
+import com.example.demos.interfaces.Grafico;
 
 public class Alumno extends Persona implements Grafico {
 	int nota;

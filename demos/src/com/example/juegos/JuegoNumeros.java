@@ -1,4 +1,4 @@
-package com.example;
+package com.example.juegos;
 
 import java.util.Random;
 
@@ -21,7 +21,9 @@ public class JuegoNumeros {
 		encontrado = false;
 	}
 
-	public String juega(int numeroIntroducido) {
+	public String juega(int numeroIntroducido) throws JuegoException {
+		if(!deboSeguir())
+			throw new JuegoException("Partida terminada");
 		intentos += 1;
 		String msg = "Encontrado";
 		if (numeroBuscado == numeroIntroducido) {
