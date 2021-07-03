@@ -5,6 +5,7 @@ import java.util.regex.Pattern;
 
 import com.example.demos.clases.Alumno;
 import com.example.demos.clases.Circulo;
+import com.example.demos.clases.Factura;
 import com.example.demos.clases.Figura;
 import com.example.demos.clases.Persona;
 import com.example.demos.clases.Profesor;
@@ -12,6 +13,7 @@ import com.example.demos.interfaces.Grafico;
 import com.example.demos.interfaces.Servicio;
 import com.example.juegos.JuegoException;
 import com.example.juegos.JuegoNumeros;
+import com.example.juegos.ajedrez.Movimiento;
 import com.example.juegos.ajedrez.Posicion;
 
 /**
@@ -32,17 +34,34 @@ public class Principal {
 		// calcula("3+4+3,4-7*1=");
 		// calculaRegEx("3+4+3,4-7*1=");
 		// ejemplos3();
-		ajedrez();
+//		ajedrez();
+		clasesInternas();
 
 	}
 
+	public static void clasesInternas() {
+		Factura f = new Factura();
+		Factura.Direccion direccion = new Factura.Direccion();
+		if(f.getEstado() == Factura.Estado.PAGADA) {
+			
+		}
+		//f.setEstado("PAGADA");
+	}
 	public static void ajedrez() {
 		Posicion posicion;
+		Movimiento m;
 		try {
-			//posicion = new Posicion(0, 0);
 			posicion = new Posicion(1, 1);
+			System.out.println(posicion);
 			posicion = new Posicion('1', 'A');
 			System.out.println(posicion);
+			//posicion = new Posicion(0, 0);
+			m = new Movimiento("A7B7");
+			System.out.println(m);
+			System.out.println(m.esVertical() ? "esVertical":"");
+			System.out.println(m.esDiagonal() ? "esDiagonal":"");
+			System.out.println(m.esHorizontal() ? "esHorizontal":"");
+			System.out.println(m.saltoHorizontal());
 		} catch (JuegoException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

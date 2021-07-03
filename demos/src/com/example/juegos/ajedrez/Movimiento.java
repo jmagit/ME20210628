@@ -14,7 +14,7 @@ public class Movimiento {
 	public Movimiento(String movimiento) throws JuegoException {
 		if(movimiento == null || !movimiento.matches("^([A-H][1-8]){2}$"))
 			throw new JuegoException("El movimiento no está en notación internacional.");
-		if(movimiento.substring(0, 1).equals(movimiento.substring(2, 3)))
+		if(movimiento.substring(0, 2).equals(movimiento.substring(2, 4)))
 			throw new JuegoException("La posición inicial debe ser distinta de la posición final.");
 		posicionInicial = new Posicion(movimiento.charAt(1), movimiento.charAt(0));	
 		posicionFinal = new Posicion(movimiento.charAt(3), movimiento.charAt(2));	
@@ -108,4 +108,11 @@ public class Movimiento {
 		return posicionInicial.getColumna() < posicionFinal.getColumna() ? -1 : 
 			posicionInicial.getColumna() == posicionFinal.getColumna() ? 0 : 1;
 	}
+
+	@Override
+	public String toString() {
+		return "Movimiento [posicionInicial=" + posicionInicial + ", posicionFinal=" + posicionFinal + "]";
+	}
+	
+	
 }
