@@ -2,6 +2,7 @@ package com.example;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 import java.util.regex.Pattern;
@@ -18,10 +19,12 @@ import com.example.demos.clases.Persona;
 import com.example.demos.clases.Profesor;
 import com.example.demos.interfaces.Grafico;
 import com.example.demos.interfaces.Servicio;
+import com.example.ejercicios.Calculadora;
 import com.example.juegos.JuegoException;
 import com.example.juegos.JuegoNumeros;
 import com.example.juegos.ajedrez.Movimiento;
 import com.example.juegos.ajedrez.Posicion;
+import com.example.juegos.naipes.Baraja;
 
 /**
  * Clase lanzadora de los ejemplos del curso de Java
@@ -39,15 +42,36 @@ public class Principal {
 	public static void main(String[] args) {
 		// juega();
 		// calcula("3+4+3,4-7*1=");
-		// calculaRegEx("3+4+3,4-7*1=");
+		// calculaRegEx("3+4+3,4-7*2=");
+		 //calculaRegEx("3-2=");
 		// ejemplos3();
 //		ajedrez();
 //		clasesInternas();
 //		genericos();
 		
-		flujos();
+//		flujos();
+		naipes();
 	}
 	
+	private static void naipes() {
+		var b = new Baraja();
+		
+//		for(var c: b.getCartas())
+//			System.out.println(c);
+		b.barajar();
+		b.getMazo().forEach(System.out::println);
+		b.reparte(4, 5).forEach(item -> {
+			System.out.println("\nJugador\n-------------------------------");
+			item.forEach(System.out::println);
+		});
+		System.out.println("\nQuedan " + b.getMazo().size());
+		b.reparte(1, 2).forEach(item -> {
+			System.out.println("\nJugador\n-------------------------------");
+			item.forEach(System.out::println);
+		});
+		System.out.println("\nQuedan " + b.getMazo().size());
+	}
+
 	public static void flujos() {
 		List<Persona> lst = new ArrayList<>();
 		lst.add(new Profesor(2, "Otro", "Profesor"));
@@ -503,10 +527,14 @@ public class Principal {
 	}
 
 	private static void calculaRegEx(String expresion) {
+		var calc = new Calculadora();
 		var pattern = Pattern.compile("\\s*([0-9,]+)\\s*([+-/*=])", Pattern.MULTILINE);
 		var matcher = pattern.matcher(expresion);
 		while (matcher.find()) {
-			System.out.println(matcher.group(1) + " " + matcher.group(2));
+			calc.ponOperando(matcher.group(1).replace(",", "."));
+			calc.calcular(matcher.group(2));
+			System.out.println(matcher.group(1) + "\t" + matcher.group(2) 
+				+ "\t -> " + Double.toString(calc.getResultado()).replace(".", ","));
 		}
 	}
 
