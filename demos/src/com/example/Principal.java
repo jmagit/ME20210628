@@ -1,12 +1,19 @@
 package com.example;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import com.example.demos.clases.Alumno;
 import com.example.demos.clases.Circulo;
+import com.example.demos.clases.Elemento;
+import com.example.demos.clases.ElementoCadena;
 import com.example.demos.clases.Factura;
 import com.example.demos.clases.Figura;
+import com.example.demos.clases.Listado;
 import com.example.demos.clases.Persona;
 import com.example.demos.clases.Profesor;
 import com.example.demos.interfaces.Grafico;
@@ -35,11 +42,169 @@ public class Principal {
 		// calculaRegEx("3+4+3,4-7*1=");
 		// ejemplos3();
 //		ajedrez();
-		clasesInternas();
+//		clasesInternas();
+//		genericos();
+		
+		flujos();
+	}
+	
+	public static void flujos() {
+		List<Persona> lst = new ArrayList<>();
+		lst.add(new Profesor(2, "Otro", "Profesor"));
+		lst.add(new Profesor(1, "Pepito", "Grillo"));
+		lst.add(new Alumno(1, "Pepito", "Grillo", 5));
+		lst.add(new Alumno(3, "Carmelo", "Coton", 7));
+		lst.add(new Alumno(4, "Pedro", "Pica Piedra", 2));
+		lst.add(new Alumno(5, "Pablo", "Marmol", 6));
+		lst.add(new Alumno(9, "Impar", "Marmol", 6));
+		
+//		lst.stream().filter(item -> item instanceof Profesor)
+//			.map(item -> (Profesor)item)
+//			//.sorted((a, b) -> b.getId() - a.getId())
+//			.sorted((a, b) -> -a.getApellidos().compareToIgnoreCase(b.getApellidos()))
+//			//.forEach(item -> System.out.println(item));
+//			.forEach(System.out::println);
+//		System.out.println(lst.stream()
+//				.filter(item -> item instanceof Alumno)
+//				.map(item -> ((Alumno)item).getNota())
+//				.reduce(0, (a, item) -> a + item));
+//		System.out.println(lst.stream()
+//				.filter(item -> item instanceof Alumno)
+//				.map(item -> ((Alumno)item))
+//				.peek(item -> item.setNota((int)(item.getNota()*1.2)))
+//				.mapToInt(item -> item.getNota())
+//				.sum());
+		int page=0, rows=3;
+//		for(; page < 3; page++) {
+//			System.out.println("Página "+(page+1)+":");
+//			lst.stream()
+//				//.sorted()
+//				.sorted((a, b) -> -a.getApellidos().compareToIgnoreCase(b.getApellidos()))
+//				.skip(page * rows)
+//				.limit(rows)
+//				.forEach(System.out::println);
+//		}
+		
+//		List<Alumno> lstAlumnos = lst.stream()
+//				.filter(item -> item instanceof Alumno)
+//				.map(item -> ((Alumno)item))
+//				.collect(Collectors.toList());
+//		lstAlumnos.forEach(System.out::println);
+//		System.out.println(lst.stream()
+//				.filter(item -> item instanceof Alumno)
+//				.map(item -> ((Alumno)item))
+//				.peek(item -> item.setNota((int)(item.getNota()*1.2)))
+//				.mapToInt(item -> item.getNota())
+//				.sum());
+//		lstAlumnos.forEach(System.out::println);
+		
+//		boolean paginado = true, soloAlumnos = true;
+//		String prefijo = "Pe";
+//		
+//		var consulta = lst.stream();
+//		if(soloAlumnos) {
+//			consulta = consulta.filter(item -> item instanceof Alumno);
+//		}
+//		if(prefijo != null && !prefijo.isBlank()) {
+//			consulta = consulta.filter(item -> item.getNombre().startsWith(prefijo));
+//		}
+//		if(paginado) {
+//			consulta = consulta.sorted((a, b) -> -a.getApellidos().compareToIgnoreCase(b.getApellidos()))
+//					.skip(page * rows)
+//					.limit(rows);		
+//		}
+//		consulta.forEach(System.out::println);
+//		consulta.forEach(System.out::println);
+		
+//		var rslt = lst.stream().filter(a -> a instanceof Alumno && a.getId() == 11).findFirst();
+//		if(rslt.isEmpty()) {
+//			System.out.println("No encontrado");
+//		} else {
+//			System.out.println(rslt.get());
+//		}
+		
+		List<Integer> listOfIntegers = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9);
+		System.out.println("Sequential Stream: ");
+		listOfIntegers.stream().map(v -> v*1.5).sorted().forEach(e -> System.out.print(e + " "));
+		System.out.println("\nParallel Stream: ");
+		listOfIntegers.stream().parallel().map(v -> v*1.5).sequential().sorted().forEach(e -> System.out.print(e + " "));
 
 	}
+	
+	public static void cadenas() {
+		String x = "";
+//		for(int i=0; i < 10000; i++) {
+//			System.out.print(x.length());
+//			x+= "X";
+//			System.out.println("->" + x.length());
+//		}
+		StringBuilder sb = new StringBuilder("");
+		for(int i=0; i < 10000; i++) 
+			sb.append("X");
+		x = sb.toString();
+		System.out.println("->" + x.length());
+		
+		Profesor p = new Profesor(1, "Pepito", "Grillo");
+		Alumno a = new Alumno(1, "Pepito", "Grillo", 1);
+		if(a.equals(p) && p.equals(a) && a.hashCode() == p.hashCode() && a.compareTo(p) == 0) {
+			
+		}
+	
+	}
+	public static void anotaciones() {
+		var anotaciones = JuegoException.class.getAnnotations();
+		System.out.println(Profesor.class.getAnnotation(Autor.class).nombre());
+	}
+	@SuppressWarnings("unused")
+	public static void genericos() {
+		Listado<Alumno> alumListado = new Listado<Alumno>(new Alumno[10]);
+		var profes = new Listado<Profesor>(new Profesor[3]);
+		ElementoCadena<Integer> provincia = new ElementoCadena<Integer>(8, "Barcelona");
+		Elemento<Character, String> genero = new Elemento<>('m', "Mujer");
+		//Alumno a = profes.getPrimero();
+		
+		Object object = 5; // new Integer(5);
+		int i = (int)object;  // object.get();
+		i = provincia.getCodigo();
+		Integer j = 5;
+		i += j;
+		if(object instanceof Integer) {
+		}
+	}
+	
+	public static void lamda() {
+		String[] cadenas = {"uno", "dos", "tres" };
+		//String[] cadenas2 = cadenas;
+		try {
+			System.out.println(busca(cadenas, s -> s.startsWith("u")));
+			System.out.println(busca(cadenas, s -> s.startsWith("t") && s.endsWith("s")));
+			System.out.println(busca(cadenas, new Busca() {				
+				@Override
+				public boolean compara(String cadena) {
+					return cadena.equals("tres");
+				}
+			}));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	@FunctionalInterface
+	static interface Busca {
+		boolean compara(String cadena);
+	}
+	
+	@Deprecated
+	public static String busca(String[] lista, Busca comp ) throws Exception {
+		for(var item: lista) {
+			if(comp.compara(item))
+				return item;
+		}
+		throw new Exception();
+	}
 
-	public static void clasesInternas() {
+ 	public static void clasesInternas() {
 		Factura f = new Factura();
 		Factura.Direccion direccion = new Factura.Direccion();
 		if(f.getEstado() == Factura.Estado.PAGADA) {
@@ -93,7 +258,7 @@ public class Principal {
 		a = new Figura();
 		a = new Alumno();
 		a.pintate();
-		Object object = new Profesor(1, "Profe");
+		Object object = new Profesor(1, "Profe", "uno");
 		if (object instanceof Grafico) {
 			((Grafico) object).pintate();
 		}

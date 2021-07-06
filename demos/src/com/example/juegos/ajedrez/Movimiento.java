@@ -27,6 +27,8 @@ public class Movimiento {
 	 * @throws JuegoException Movimiento invalido
 	 */
 	public Movimiento(Posicion posicionInicial, Posicion posicionFinal) throws JuegoException {
+		if(posicionInicial == null || posicionFinal == null)
+			throw new JuegoException("La posición inicial y la final no pueden ser nulas.");
 		if(posicionFinal == posicionInicial)
 			throw new JuegoException("La posición inicial debe ser distinta de la posición final.");
 		this.posicionInicial = posicionInicial;

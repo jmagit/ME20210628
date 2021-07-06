@@ -1,8 +1,10 @@
 package com.example.juegos;
 
-public class JuegoException extends Exception {
-	private static final long serialVersionUID = 1L;
+import com.example.Autor;
 
+@SuppressWarnings("serial")
+@Autor(nombre = "Javier")
+public class JuegoException extends Exception {
 	public JuegoException(String message) {
 		super(message);
 	}

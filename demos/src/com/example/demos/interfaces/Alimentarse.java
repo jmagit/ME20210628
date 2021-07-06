@@ -5,4 +5,10 @@ public interface Alimentarse {
 	
 	void tomarCafe();
 	void comer();
+	
+	default void comidaCompleta() {
+		comer();
+		tomarCafe();
+	}
+	default void cerrar() { System.out.println("Cierro comida"); }
 }

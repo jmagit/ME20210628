@@ -1,10 +1,11 @@
 package com.example.demos.clases;
 
 import java.util.Date;
+import java.util.Objects;
 
 import com.example.demos.interfaces.Alimentarse;
 
-public abstract class Persona implements Alimentarse {
+public abstract class Persona implements Alimentarse, Comparable<Persona> {
 	public static final String PREFIJO = "p";
 	public final String soloLectura = "";
 
@@ -16,7 +17,7 @@ public abstract class Persona implements Alimentarse {
 
 	private int id;
 	private String nombre;
-	private String apellido;
+	private String apellidos;
 	private int edad;
 	private Date fechaNacimiento;
 	private boolean activa;
@@ -31,6 +32,13 @@ public abstract class Persona implements Alimentarse {
 		//this();
 		this.id = id;
 		this.nombre = nombre;
+		//this.fechaNacimiento = new date()
+	}
+	public Persona(int id, String nombre, String apellidos) {
+		//this();
+		this.id = id;
+		this.nombre = nombre;
+		this.apellidos = apellidos;
 		//this.fechaNacimiento = new date()
 	}
 
@@ -61,12 +69,12 @@ public abstract class Persona implements Alimentarse {
 		nombre = valor;
 	}
 
-	public String getApellido() {
-		return apellido;
+	public String getApellidos() {
+		return apellidos;
 	}
 
-	public void setApellido(String apellido) {
-		this.apellido = apellido;
+	public void setApellidos(String apellidos) {
+		this.apellidos = apellidos;
 	}
 
 	public int getEdad() {
@@ -99,5 +107,24 @@ public abstract class Persona implements Alimentarse {
 	public void tomarCafe() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!(obj instanceof Persona))
+			return false;
+		return id == ((Persona) obj).id;
+	}
+	
+	@Override
+	public int compareTo(Persona o) {
+		return id - o.id;
 	}
 }
