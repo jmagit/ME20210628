@@ -25,6 +25,11 @@ import com.example.juegos.JuegoNumeros;
 import com.example.juegos.ajedrez.Movimiento;
 import com.example.juegos.ajedrez.Posicion;
 import com.example.juegos.naipes.Baraja;
+import com.example.juegos.naipes.Baraja40Española;
+import com.example.juegos.naipes.Baraja48Española;
+import com.example.juegos.naipes.BarajaFrancesa;
+import com.example.juegos.naipes.NaipeFrances;
+import com.example.juegos.naipes.ValorNaipe;
 
 /**
  * Clase lanzadora de los ejemplos del curso de Java
@@ -54,22 +59,43 @@ public class Principal {
 	}
 	
 	private static void naipes() {
-		var b = new Baraja();
+		var b = new BarajaFrancesa();
 		
-//		for(var c: b.getCartas())
-//			System.out.println(c);
-		b.barajar();
-		b.getMazo().forEach(System.out::println);
-		b.reparte(4, 5).forEach(item -> {
-			System.out.println("\nJugador\n-------------------------------");
-			item.forEach(System.out::println);
-		});
-		System.out.println("\nQuedan " + b.getMazo().size());
-		b.reparte(1, 2).forEach(item -> {
-			System.out.println("\nJugador\n-------------------------------");
-			item.forEach(System.out::println);
-		});
-		System.out.println("\nQuedan " + b.getMazo().size());
+		try {
+			System.out.println("Baraja\n-------------------------------");
+			for(var c: b.getCartas())
+				System.out.println(c);
+			System.out.println("\nMazo\n-------------------------------");
+			b.barajar();
+			b.getMazo().forEach(System.out::println);
+			b.reparte(4, 5).forEach(item -> {
+				System.out.println("\nJugador\n-------------------------------");
+				item.forEach(System.out::println);
+			});
+				System.out.println("\nQuedan " + b.getMazo().size());
+			var mano = b.reparte(1, 2);
+			System.out.println("\nQuedan " + b.getMazo().size());
+			b.reparte(4, 5).forEach(item -> {
+				System.out.println("\nJugador\n-------------------------------");
+				item.forEach(System.out::println);
+			});
+			System.out.println("\nQuedan " + b.getMazo().size());
+			mano.forEach(item -> {
+				System.out.println("\nJugador\n-------------------------------");
+				item.forEach(System.out::println);
+			});
+			System.out.println("\nQuedan " + b.getMazo().size());
+			b.apilar(mano.get(0));
+			b.getMazo().forEach(System.out::println);
+			// b.apilar(mano.get(0));
+			// b.apilar(List.of(new NaipeFrances(NaipeFrances.Palos.CORAZONES, (byte)1)));
+			System.out.println("\nQuedan " + b.getMazo().size());
+			System.out.println(ValorNaipe.REINA.valorNumerico);
+			System.out.println(ValorNaipe.toEnum(12));
+		} catch (JuegoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public static void flujos() {
