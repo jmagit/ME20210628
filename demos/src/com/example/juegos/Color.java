@@ -1,4 +1,4 @@
-package com.example.juegos.ajedrez;
+package com.example.juegos;
 
 /**
  * Color de las piezas del juego

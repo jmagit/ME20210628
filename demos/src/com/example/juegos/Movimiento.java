@@ -1,7 +1,10 @@
-package com.example.juegos.ajedrez;
+package com.example.juegos;
 
-import com.example.juegos.JuegoException;
-
+/**
+ * Representa un movimiento del Ajedrez, desde una posición inicial hasta una posición final.
+ * @author Javier
+ * @version 1.0
+ */
 public class Movimiento {	
 	private Posicion posicionInicial;
 	private Posicion posicionFinal;
@@ -98,8 +101,12 @@ public class Movimiento {
 	 * @return -1 de abajo/arriba, 1 de arriba/abajo, 0 estatico
 	 */
 	public int deltaVertical() {
-		return posicionInicial.getFila() < posicionFinal.getFila() ? -1 : 
-			posicionInicial.getFila() == posicionFinal.getFila() ? 0 : 1;
+		if(posicionInicial.getFila() == posicionFinal.getFila())
+			return 0;
+		else if(posicionInicial.getFila() > posicionFinal.getFila())
+			return -1;
+		else
+			return 1;
 	}
 	
 	/**
@@ -107,8 +114,7 @@ public class Movimiento {
 	 * @return -1 de izquierda/derecha, 1 de derecha/izquierda, 0 estatico
 	 */
 	public int deltaHorizontal() {
-		return posicionInicial.getColumna() < posicionFinal.getColumna() ? -1 : 
-			posicionInicial.getColumna() == posicionFinal.getColumna() ? 0 : 1;
+		return (int)Math.signum(posicionFinal.getColumna() - posicionInicial.getColumna());
 	}
 
 	@Override

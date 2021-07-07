@@ -1,8 +1,6 @@
-package com.example.juegos.ajedrez;
+package com.example.juegos;
 
 import java.util.Objects;
-
-import com.example.juegos.JuegoException;
 
 /**
  * Posición dentro del tablero de ajedrez

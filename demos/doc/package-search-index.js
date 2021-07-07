@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.example"},{"l":"com.example.demos.clases"},{"l":"com.example.demos.interfaces"},{"l":"com.example.juegos"},{"l":"com.example.juegos.ajedrez"}];updateSearchResults();
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.example"},{"l":"com.example.demos.clases"},{"l":"com.example.demos.interfaces"},{"l":"com.example.ejercicios"},{"l":"com.example.juegos"},{"l":"com.example.juegos.ajedrez"},{"l":"com.example.juegos.naipes"}];updateSearchResults();

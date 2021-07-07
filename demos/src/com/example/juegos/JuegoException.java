@@ -2,6 +2,11 @@ package com.example.juegos;
 
 import com.example.Autor;
 
+/**
+ * Situaciones anomalas en los juegos
+ * @author Javier
+ *
+ */
 @SuppressWarnings("serial")
 @Autor(nombre = "Javier")
 public class JuegoException extends Exception {
