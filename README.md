@@ -38,3 +38,18 @@
     1. <https://tutobasico.com/basicos3-java/>
     2. <http://ejerciciosresueltosprogramacion.blogspot.com/>
     3. <https://www.discoduroderoer.es/ejercicios-propuestos-y-resueltos-programacion-orientado-a-objetos-java/>
+
+## Descargas
+
+### Bases de datos de ejemplos:
+
+<https://downloads.mysql.com/docs/sakila-db.zip>
+
+### Paquetes Java
+
+<https://downloads.mysql.com/archives/get/p/3/file/mysql-connector-java-5.1.49.zip>
+
+<https://sourceforge.net/projects/hibernate/files/hibernate-orm/5.5.3.Final/hibernate-release-5.5.3.Final.zip/download>
+
+<https://sourceforge.net/projects/hibernate/files/hibernate-validator/7.0.0.Final/hibernate-validator-7.0.0.Final-dist.zip/download>
+
