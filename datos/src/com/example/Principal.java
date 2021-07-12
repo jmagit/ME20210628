@@ -11,10 +11,10 @@ import java.util.List;
 public class Principal {
 
 	public static void main(String[] args) {
-		//consulta3(1);
+//		consulta3(2);
 //		add("uno");
-//		modify(10, "OTRO");
-//		remove(12);
+//		modify(11, "OTRO");
+		remove(10);
 	}
 	
 	static class Peli {
@@ -108,7 +108,8 @@ public class Principal {
 	private static void add(String nombre) {
 		try(Connection connection = JDBCBridged.getConnection()) {
 			PreparedStatement cmd = connection.prepareStatement(
-					"INSERT INTO language(NAME) VALUES(?)");
+					"INSERT INTO " +
+					" language(NAME) VALUES(?)");
 			cmd.setString(1, nombre);
 			var rslt = cmd.executeUpdate();
 			if(rslt == 0) {
