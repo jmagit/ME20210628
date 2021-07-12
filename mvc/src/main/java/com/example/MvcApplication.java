@@ -38,7 +38,7 @@ public class MvcApplication implements CommandLineRunner {
 	}
 
 	@Bean
-	public Repositorio getRepositorio(String modo) {
+	public Repositorio getRepositorio(@Value("${modo}") String modo) {
 		System.out.println(modo);
 		if("test".equals(modo)) {
 			return new RepositorioMockImpl();
