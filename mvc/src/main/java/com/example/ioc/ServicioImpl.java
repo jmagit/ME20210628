@@ -3,13 +3,22 @@ package com.example.ioc;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 @Service
+@Scope("prototype")
 public class ServicioImpl implements Servicio {
-	@Autowired
+//	@Autowired
+//	@Qualifier("Verdad")
 	private Repositorio dao;
 	
+//	@Qualifier("Verdad")
+	public ServicioImpl(Repositorio dao) {
+		this.dao = dao;
+		System.out.println("Creo instancia");
+	}
 	@Override
 	public List<Entidad> get() {
 		return dao.get();
