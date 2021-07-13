@@ -2,8 +2,15 @@ package com.example.domains.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+
+import org.hibernate.validator.constraints.Length;
+
+import com.example.domains.core.Entidad;
+
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Objects;
 
 
 /**
@@ -12,7 +19,7 @@ import java.util.List;
  */
 @Entity
 @NamedQuery(name="Category.findAll", query="SELECT c FROM Category c")
-public class Category implements Serializable {
+public class Category extends Entidad<Category> implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -23,6 +30,8 @@ public class Category implements Serializable {
 	@Column(name="last_update", insertable=false, updatable=false)
 	private Timestamp lastUpdate;
 
+	@NotBlank
+	@Length(max = 25)
 	private String name;
 
 	//bi-directional many-to-one association to FilmCategory
@@ -76,6 +85,28 @@ public class Category implements Serializable {
 		filmCategory.setCategory(null);
 
 		return filmCategory;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(categoryId);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Category other = (Category) obj;
+		return categoryId == other.categoryId;
+	}
+
+	@Override
+	public String toString() {
+		return "Category [categoryId=" + categoryId + ", name=" + name + "]";
 	}
 
 }

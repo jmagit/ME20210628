@@ -6,27 +6,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
-import com.example.domains.contracts.ActorService;
-import com.example.domains.entities.Actor;
+import com.example.domains.contracts.CategoryService;
+import com.example.domains.entities.Category;
 import com.example.domains.exceptions.InvalidDataException;
 import com.example.domains.exceptions.NotFoundException;
-import com.example.infraestructure.repositories.ActorRepository;
+import com.example.infraestructure.repositories.CategoryRepository;
 
 @Service
-public class ActorServiceImpl implements ActorService {
+public class CategoryServiceImpl implements CategoryService {
 	@Autowired
-	ActorRepository dao;
+	CategoryRepository dao;
 	
-	public ActorServiceImpl() {
+	public CategoryServiceImpl() {
 	}
 
 	@Override
-	public List<Actor> getAll() {
+	public List<Category> getAll() {
 		return dao.findAll();
 	}
 
 	@Override
-	public Actor getOne(Integer id) throws NotFoundException {
+	public Category getOne(Integer id) throws NotFoundException {
 		var item = dao.findById(id);
 		if(item.isEmpty())
 			throw new NotFoundException();
@@ -34,28 +34,28 @@ public class ActorServiceImpl implements ActorService {
 	}
 
 	@Override
-	public void add(Actor item) throws InvalidDataException {
+	public void add(Category item) throws InvalidDataException {
 		if(item == null || item.isInvalid())
 			throw new InvalidDataException(item == null ? "Faltan los datos" : item.getErrorsMessage());
-		if(dao.findById(item.getActorId()).isPresent())
+		if(dao.findById(item.getCategoryId()).isPresent())
 			throw new InvalidDataException("Clave duplicada");
 		dao.save(item);
 	}
 
 	@Override
-	public void modify(Actor item) throws InvalidDataException, NotFoundException {
+	public void modify(Category item) throws InvalidDataException, NotFoundException {
 		if(item == null || item.isInvalid())
 			throw new InvalidDataException(item == null ? "Faltan los datos" : item.getErrorsMessage());
-		if(dao.findById(item.getActorId()).isEmpty())
+		if(dao.findById(item.getCategoryId()).isEmpty())
 			throw new NotFoundException();
 		dao.save(item);
 	}
 
 	@Override
-	public void remove(Actor item) throws InvalidDataException, NotFoundException {
+	public void remove(Category item) throws InvalidDataException, NotFoundException {
 		if(item == null)
 			throw new InvalidDataException("Faltan los datos");
-		removeById(item.getActorId());
+		removeById(item.getCategoryId());
 	}
 
 	@Override

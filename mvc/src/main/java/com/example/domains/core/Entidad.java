@@ -7,7 +7,7 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 
-public class Entidad<T> {
+public abstract class Entidad<T> {
 	private Validator validator = Validation.buildDefaultValidatorFactory().getValidator(); 
 
 	@Transient
