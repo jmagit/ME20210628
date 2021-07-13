@@ -10,6 +10,6 @@ public interface DomainService<T> {
 	T getOne(int id) throws NotFoundException;
 	void add(T item) throws InvalidDataException;
 	void modify(T item) throws InvalidDataException, NotFoundException;
-	void remove(T item) throws InvalidDataException;
-	void removeById(int id);
+	void remove(T item) throws InvalidDataException, NotFoundException;
+	void removeById(int id) throws NotFoundException;
 }

@@ -11,6 +11,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import com.example.domains.contracts.ActorService;
 import com.example.domains.entities.Actor;
 import com.example.domains.entities.FilmActor;
 import com.example.infraestructure.repositories.ActorRepository;
@@ -31,16 +32,19 @@ public class MvcApplication implements CommandLineRunner {
 	@Value("${modo}") 
 	private String modo;
 	
-	@Autowired(required = false)
-	Servicio srv;
-	@Autowired(required = false)
-	Servicio srv2;
+//	@Autowired(required = false)
+//	Servicio srv;
+//	@Autowired(required = false)
+//	Servicio srv2;
 	
 	@Autowired
 	ActorRepository dao;
 
 	@Autowired
 	PeliculasRepository daoPelis;
+	
+	@Autowired
+	ActorService srvActor;
 	
 	@Transactional
 	@Override
@@ -71,13 +75,16 @@ public class MvcApplication implements CommandLineRunner {
 //		dao.findByLastNameEndingWith("pe").forEach(System.out::println);
 //		dao.findTop10ByActorIdLessThan(15).forEach(System.out::println);
 		
-		Actor actor = new Actor(0, "12345678A", "Grillo");
-		if(actor.isValid()) {
-			System.out.println("Es valido");
-		} else {
-			System.out.println(actor.getErrorsMessage());
-		}
-		dao.save(actor);
+//		Actor actor = new Actor(201, "Pepito", "Grillo");
+//		srvActor.modify(actor);
+		srvActor.remove(new Actor(201));
+		srvActor.getAll().forEach(System.out::println);
+//		if(actor.isValid()) {
+//			System.out.println("Es valido");
+//		} else {
+//			System.out.println(actor.getErrorsMessage());
+//		}
+//		dao.save(actor);
 	}
 
 	@Bean

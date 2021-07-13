@@ -3,6 +3,7 @@ package com.example.domains.sevices;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.example.domains.contracts.ActorService;
@@ -51,15 +52,19 @@ public class ActorServiceImpl implements ActorService {
 	}
 
 	@Override
-	public void remove(Actor item) throws InvalidDataException {
+	public void remove(Actor item) throws InvalidDataException, NotFoundException {
 		if(item == null)
 			throw new InvalidDataException("Faltan los datos");
 		removeById(item.getActorId());
 	}
 
 	@Override
-	public void removeById(int id) {
-		dao.deleteById(id);		
+	public void removeById(int id) throws NotFoundException {
+		try {
+			dao.deleteById(id);		
+		} catch (EmptyResultDataAccessException e) {
+			throw new NotFoundException(e);
+		}
 	}
 
 }
