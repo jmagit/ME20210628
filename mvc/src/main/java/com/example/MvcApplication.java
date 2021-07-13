@@ -67,7 +67,16 @@ public class MvcApplication implements CommandLineRunner {
 //		var otro = dao.findById(201).get();
 //		otro.getFilmActors().forEach(item -> System.out.println(item.getFilm()));
 //		dao.deleteById(201);
-		dao.findByFirstName("Penelope").forEach(System.out::println);
+//		dao.findByFirstName("Penelope").forEach(System.out::println);
+//		dao.findByLastNameEndingWith("pe").forEach(System.out::println);
+//		dao.findTop10ByActorIdLessThan(15).forEach(System.out::println);
+		
+		Actor actor = new Actor(0, "Pepito", "Grillo");
+		if(actor.isValid()) {
+			System.out.println("Es valido");
+		} else {
+			System.out.println(actor.getErrorsMessage());
+		}
 	}
 
 	@Bean
