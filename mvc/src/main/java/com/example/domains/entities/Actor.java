@@ -3,6 +3,7 @@ package com.example.domains.entities;
 import java.io.Serializable;
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -31,10 +32,11 @@ public class Actor implements Serializable {
 	private Timestamp lastUpdate;
 
 	//bi-directional many-to-one association to FilmActor
-	@OneToMany(mappedBy="actor")
+	@OneToMany(mappedBy="actor", cascade = CascadeType.ALL /*, fetch = FetchType.EAGER*/)
 	private List<FilmActor> filmActors;
 
 	public Actor() {
+		filmActors = new ArrayList<>();
 	}
 
 	public Actor(int actorId) {
