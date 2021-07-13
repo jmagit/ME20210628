@@ -34,7 +34,7 @@ public class Actor extends Entidad<Actor> implements Serializable {
 	@Column(name="first_name")
 	@NotBlank
 	@Length(max = 45, min=2)
-	@NIF
+	@NIF(message = "No es valido")
 	private String firstName;
 
 	@Column(name="last_name")
