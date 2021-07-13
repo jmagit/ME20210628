@@ -71,12 +71,13 @@ public class MvcApplication implements CommandLineRunner {
 //		dao.findByLastNameEndingWith("pe").forEach(System.out::println);
 //		dao.findTop10ByActorIdLessThan(15).forEach(System.out::println);
 		
-		Actor actor = new Actor(0, "Pepito", "Grillo");
+		Actor actor = new Actor(0, "12345678A", "Grillo");
 		if(actor.isValid()) {
 			System.out.println("Es valido");
 		} else {
 			System.out.println(actor.getErrorsMessage());
 		}
+		dao.save(actor);
 	}
 
 	@Bean
