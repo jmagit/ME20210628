@@ -1,6 +1,7 @@
 package com.example;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -10,6 +11,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 
 import com.example.domains.contracts.ActorService;
 import com.example.domains.entities.Actor;
@@ -46,6 +49,9 @@ public class MvcApplication implements CommandLineRunner {
 	@Autowired
 	ActorService srvActor;
 	
+	@Autowired 
+	JdbcTemplate jdbcTemplate;
+	
 	@Transactional
 	@Override
 	public void run(String... args) throws Exception {
@@ -77,14 +83,19 @@ public class MvcApplication implements CommandLineRunner {
 		
 //		Actor actor = new Actor(201, "Pepito", "Grillo");
 //		srvActor.modify(actor);
-		srvActor.remove(new Actor(201));
-		srvActor.getAll().forEach(System.out::println);
+//		srvActor.remove(new Actor(202));
+//		srvActor.getAll().forEach(System.out::println);
 //		if(actor.isValid()) {
 //			System.out.println("Es valido");
 //		} else {
 //			System.out.println(actor.getErrorsMessage());
 //		}
 //		dao.save(actor);
+		System.out.println(jdbcTemplate.queryForObject("select count(*) from actor", Integer.class));
+		List<Actor> actors = this.jdbcTemplate.query(
+		        "select actor_id, first_name, last_name from actor",
+		        (rs, ind) -> new Actor(rs.getInt(1), rs.getString(2), rs.getString(3)));
+		actors.forEach(System.out::println);
 	}
 
 	@Bean
