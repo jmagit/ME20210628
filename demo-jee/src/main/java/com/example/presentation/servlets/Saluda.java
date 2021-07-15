@@ -51,6 +51,11 @@ public class Saluda extends HttpServlet {
 		out.println("</head>");
 		out.println("<body>");
 		out.println("<h1>Hola " + nombre + "</h1>");
+		out.println("<h2>" + request.getHeader("Accept-Language") + "</h2>");
+		if (request.getParameter("secreto") != null) {
+			out.println("<h2>" + request.getParameter("secreto") + "</h2>");
+		}
+		out.println("<a href='/demo-jee/'>Inicio</a>");
 		out.println("</body>");
 		out.println("</html>");
 	}

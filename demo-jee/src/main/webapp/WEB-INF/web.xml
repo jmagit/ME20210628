@@ -24,5 +24,6 @@
     <servlet-name>Saluda</servlet-name>
     <url-pattern>/Saluda</url-pattern>
     <url-pattern>/saluda</url-pattern>
+    <url-pattern>/pagina/bien/educada</url-pattern>
   </servlet-mapping>
 </web-app>
