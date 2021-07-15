@@ -34,6 +34,10 @@ public class Saluda extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		String nombre = nombrePorDefecto;
+		if (request.getParameter("nom") != null) {
+			nombre = request.getParameter("nom");
+		}
 		response.setContentType("text/html");
 		response.setHeader("X-La-Mia", "una cabecera");
 		PrintWriter out = response.getWriter();
@@ -46,7 +50,7 @@ public class Saluda extends HttpServlet {
 		out.println("<title>JEE</title>");
 		out.println("</head>");
 		out.println("<body>");
-		out.println("<h1>Hola " + nombrePorDefecto + "</h1>");
+		out.println("<h1>Hola " + nombre + "</h1>");
 		out.println("</body>");
 		out.println("</html>");
 	}
