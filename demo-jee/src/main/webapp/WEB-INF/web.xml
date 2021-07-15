@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:web="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:web="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd" id="WebApp_ID" version="2.5">
   <display-name>demo-jee</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
@@ -25,5 +25,15 @@
     <url-pattern>/Saluda</url-pattern>
     <url-pattern>/saluda</url-pattern>
     <url-pattern>/pagina/bien/educada</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Auth</display-name>
+    <servlet-name>Auth</servlet-name>
+    <servlet-class>com.example.presentation.servlets.Auth</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Auth</servlet-name>
+    <url-pattern>/auth</url-pattern>
   </servlet-mapping>
 </web-app>

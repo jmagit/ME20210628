@@ -11,6 +11,7 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class Saluda
@@ -18,6 +19,7 @@ import jakarta.servlet.http.HttpServletResponse;
 public class Saluda extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private String nombrePorDefecto = "";
+
 	/**
 	 * Default constructor.
 	 */
@@ -38,11 +40,12 @@ public class Saluda extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String nombre = nombrePorDefecto;
-		Optional<Cookie> cookie = Arrays.asList(request.getCookies()).stream()
-				.filter(c -> "ultimo-nombre".equals(c.getName()))
-				.findFirst();
-		if(cookie.isPresent()) {
-			nombre = cookie.get().getValue();
+		if (request.getCookies() != null) {
+			Optional<Cookie> cookie = Arrays.asList(request.getCookies()).stream()
+					.filter(c -> "ultimo-nombre".equals(c.getName())).findFirst();
+			if (cookie.isPresent()) {
+				nombre = cookie.get().getValue();
+			}
 		}
 		if (request.getParameter("nom") != null) {
 			nombre = request.getParameter("nom");
@@ -64,6 +67,10 @@ public class Saluda extends HttpServlet {
 		out.println("<h2>" + request.getHeader("Accept-Language") + "</h2>");
 		if (request.getParameter("secreto") != null) {
 			out.println("<h2>" + request.getParameter("secreto") + "</h2>");
+		}
+		HttpSession ses = request.getSession(true);
+		if (ses.getValue("usuario") != null) {
+			out.println("<h2>Usuario: " + ses.getValue("usuario") + "</h2>");
 		}
 		out.println("<a href='/demo-jee/'>Inicio</a>");
 		out.println("</body>");
