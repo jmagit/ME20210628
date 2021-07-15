@@ -2,9 +2,12 @@ package com.example.presentation.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Arrays;
+import java.util.Optional;
 
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -35,8 +38,15 @@ public class Saluda extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String nombre = nombrePorDefecto;
+		Optional<Cookie> cookie = Arrays.asList(request.getCookies()).stream()
+				.filter(c -> "ultimo-nombre".equals(c.getName()))
+				.findFirst();
+		if(cookie.isPresent()) {
+			nombre = cookie.get().getValue();
+		}
 		if (request.getParameter("nom") != null) {
 			nombre = request.getParameter("nom");
+			response.addCookie(new Cookie("ultimo-nombre", nombre));
 		}
 		response.setContentType("text/html");
 		response.setHeader("X-La-Mia", "una cabecera");
@@ -66,7 +76,9 @@ public class Saluda extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		if ("fin".equals(request.getParameter("nom"))) {
+			response.sendRedirect("/demo-jee/");
+		}
 		doGet(request, response);
 	}
 
