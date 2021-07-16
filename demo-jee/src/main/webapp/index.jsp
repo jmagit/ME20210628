@@ -12,5 +12,8 @@
 		<h1>Hola JSP</h1>
 	</main>
 	<%@include file="WEB-INF/fragmentos/scripting.jsp"%>
+	<footer>
+	&copy; <%= java.util.Calendar.getInstance().getWeekYear() %>
+	</footer>
 </body>
 </html>
