@@ -23,5 +23,9 @@ public class Usuario {
 		this.autenticado = autenticado;
 	}
 	
-	
+	public void logout() {
+		nombre = "(anonimo)";
+		contraseña = "";
+		autenticado = false;
+	}
 }

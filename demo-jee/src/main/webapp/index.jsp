@@ -10,6 +10,10 @@
 	<%@include file="WEB-INF/fragmentos/menu.jsp"%>
 	<main class="container-fluid">
 		<h1>Hola JSP</h1>
+		<jsp:useBean id="usr" class="com.example.presentation.servlets.Usuario" scope="session" ></jsp:useBean>
+		<p>
+			<jsp:getProperty property="nombre" name="usr"/>
+		</p>
 	</main>
 	<%@include file="WEB-INF/fragmentos/scripting.jsp"%>
 	<footer>

@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" 	uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="x" 	uri="http://java.sun.com/jsp/jstl/xml" %>
+<%@ taglib prefix="fmt" 	uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="sql" 	uri="http://java.sun.com/jsp/jstl/sql" %>
+<%@ taglib prefix="fn" 	uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <%-- Declarar un atributo de la clase --%>
 <%
 response.setHeader("X-La-Mia", "una cabecera");
@@ -23,6 +29,7 @@ response.setHeader("X-La-Mia", "una cabecera");
 <body>
 	<%@include file="WEB-INF/fragmentos/menu.jsp"%>
 	<main class="container-fluid">
+		<c:
 		<p>
 			Cont:
 			<%=++cont + 1%></p>
@@ -57,6 +64,14 @@ response.setHeader("X-La-Mia", "una cabecera");
 		<p>
 			Nombre:
 			<%=toBonito(request.getParameter("nom"))%></p>
+		<jsp:useBean id="usr" class="com.example.presentation.servlets.Usuario" scope="session" ></jsp:useBean>
+		<p>
+			<jsp:getProperty property="nombre" name="usr"/>
+		</p>
+		<jsp:setProperty property="nombre" name="usr" value="Pepito"/>
+		<p>
+			<jsp:getProperty property="nombre" name="usr"/>
+		</p>
 	</main>
 	<%@include file="WEB-INF/fragmentos/scripting.jsp"%>
 </body>
