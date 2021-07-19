@@ -19,7 +19,7 @@
 		<table class="table table-hover table-striped">
 			<thead>
 				<tr>
-					<th>Nombre</th>
+					<th with="60%">Nombre</th>
 					<th>Actualizado</th>
 				</tr>
 			</thead>
