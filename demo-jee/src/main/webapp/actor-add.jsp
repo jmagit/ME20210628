@@ -18,28 +18,31 @@
 	<jsp:useBean id="dao" class="com.example.jdbc.ActorRepository" />
 	<jsp:useBean id="item" class="com.example.jdbc.Actor" scope="page" />
 	<jsp:setProperty name="item" property="*" />
-	<%
-	if (request.getMethod().equalsIgnoreCase("POST")) {
-		if (item.isNotValid()) {
-	%>
-	<p style="color: red">Error en los datos</p>
-	<%
-	} else {
-	dao.add(item);
-	response.sendRedirect("./actor-list.jsp");
-	}
-	}
-	%>
 	<main class="container-fluid">
+		<%
+		if (request.getMethod().equalsIgnoreCase("POST")) {
+			if (item.isNotValid()) {
+		%>
+		<div class="alert alert-danger" role="alert">Error en los datos</div>
+		<%
+			} else {
+				dao.add(item);
+				response.sendRedirect("./actor-list.jsp");
+			}
+		}
+		%>
 		<form method="post">
-			<p>
-				<label>Nombre:</label> <input NAME="firstName" size="45"
+			<div class="form-group">
+				<label for="firstName">Nombre:</label> <input id="firstName" class="form-control" NAME="firstName" size="45"
 					value='<%=item.getFirstName() == null ? "" : item.getFirstName()%>'>
-				<br> <label>Apellidos:</label> <input NAME="lastName" size="45"
+			</div>
+			<div class="form-group">
+				<label for="lastName">Apellidos:</label> <input id="lastName" class="form-control" NAME="lastName" size="45"
 					value='<%=item.getLastName() == null ? "" : item.getLastName()%>'>
-			</p>
+			</div>
 			<p>
-				<input type="submit" value="Enviar">
+				<input type="submit" class="btn btn-primary" value="Enviar">
+				<a href="./actor-list.jsp" class="btn btn-primary">Volver</a>
 			</p>
 		</form>
 	</main>

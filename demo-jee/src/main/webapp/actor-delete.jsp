@@ -16,23 +16,23 @@
 <body>
 	<%@include file="WEB-INF/fragmentos/menu.jsp"%>
 	<main class="container-fluid">
-	<jsp:useBean id="dao" class="com.example.jdbc.ActorRepository" />
-	<%
-	if (request.getParameter("id") == null) {
-	%>
-	<p style="color: red">Falta el identificador</p>
-	<%
-	} else {
-		try {
-			dao.delete(Short.parseShort(request.getParameter("id")));
-			response.sendRedirect("./actor-list.jsp");
-		} catch (Exception e) {
-		%>
-		<p style="color: red">Error en los datos</p>
+		<jsp:useBean id="dao" class="com.example.jdbc.ActorRepository" />
 		<%
+		if (request.getParameter("id") == null) {
+		%>
+		<div class="alert alert-danger" role="alert">Falta el identificador</div>
+		<%
+		} else {
+			try {
+				dao.delete(Short.parseShort(request.getParameter("id")));
+				response.sendRedirect("./actor-list.jsp");
+			} catch (Exception e) {
+			%>
+			<div class="alert alert-danger" role="alert">Error en los datos</div>
+			<%
+			}
 		}
-	}
-	%>
+		%>
 	</main>
 	<%@include file="WEB-INF/fragmentos/scripting.jsp"%>
 </body>

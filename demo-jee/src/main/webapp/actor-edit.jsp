@@ -25,22 +25,22 @@
 		%>
 		<p style="color: red">Error en los datos</p>
 		<%
-		} else {
-		dao.modify(item);
-		response.sendRedirect("./actor-list.jsp");
-		}
+			} else {
+			dao.modify(item);
+			response.sendRedirect("./actor-list.jsp");
+			}
 		} else if (request.getParameter("id") == null) {
 		%>
-		<p style="color: red">Falta el identificador</p>
+		<div class="alert alert-danger" role="alert">Falta el identificador</div>
 		<%
 		} else {
-		try {
-			item = dao.getOne(Short.parseShort(request.getParameter("id"))).get();
-		} catch (Exception e) {
-		%>
-		<p style="color: red">Error en los datos</p>
-		<%
-		}
+			try {
+				item = dao.getOne(Short.parseShort(request.getParameter("id"))).get();
+			} catch (Exception e) {
+			%>
+			<div class="alert alert-danger" role="alert">Error en los datos</div>
+			<%
+			}
 		}
 		%>
 		<form method="post">
@@ -48,13 +48,18 @@
 				<label>Código:</label>
 				<%=item.getActorId()%>
 				<input type="hidden" name="actorId" value='<%=item.getActorId()%>'>
-				<br> <label>Nombre:</label> <input NAME="firstName" size="45"
-					value='<%=item.getFirstName() == null ? "" : item.getFirstName()%>'>
-				<br> <label>Apellidos:</label> <input NAME="lastName" size="45"
-					value='<%=item.getLastName() == null ? "" : item.getLastName()%>'>
 			</p>
+			<div class="form-group">
+				<label for="firstName">Nombre:</label> <input id="firstName" class="form-control" NAME="firstName" size="45"
+					value='<%=item.getFirstName() == null ? "" : item.getFirstName()%>'>
+			</div>
+			<div class="form-group">
+				<label for="lastName">Apellidos:</label> <input id="lastName" class="form-control" NAME="lastName" size="45"
+					value='<%=item.getLastName() == null ? "" : item.getLastName()%>'>
+			</div>
 			<p>
-				<input type="submit" value="Enviar">
+				<input type="submit" class="btn btn-primary" value="Enviar">
+				<a href="./actor-list.jsp" class="btn btn-primary">Volver</a>
 			</p>
 		</form>
 	</main>

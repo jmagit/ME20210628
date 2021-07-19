@@ -17,19 +17,20 @@
 	<%@include file="WEB-INF/fragmentos/menu.jsp"%>
 	<jsp:useBean id="dao" class="com.example.jdbc.ActorRepository" />
 	<main class="container-fluid">
-
 		<table class="table">
 			<tr>
 				<th>Lista de Actores</th>
-				<th><a href="./actor-add.jsp">Añadir</a></th>
+				<th><a class="btn btn-primary" href="./actor-add.jsp"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></th>
 			</tr>
 			<c:forEach var="row" items="${dao.getAll()}">
 				<tr>
-					<td><c:out value="${row.firstName}" /> <c:out
-							value="${row.lastName}" /></td>
-					<td><a
-						href="./actor-edit.jsp?id=<c:out value="${row.actorId}" />">Editar</a>
-						| <a href="./actor-delete.jsp?id=<c:out value="${row.actorId}" />">Borrar</a></td>
+					<td>
+						<c:out value="${row.firstName}" /> 
+						<c:out value="${row.lastName}" />
+					</td>
+					<td><a class="btn btn-success"
+						href="./actor-edit.jsp?id=<c:out value="${row.actorId}" />"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+						| <a class="btn btn-danger" href="./actor-delete.jsp?id=<c:out value="${row.actorId}" />"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>
 				</tr>
 			</c:forEach>
 		</table>
