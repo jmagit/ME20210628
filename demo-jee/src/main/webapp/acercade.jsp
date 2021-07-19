@@ -29,7 +29,9 @@ response.setHeader("X-La-Mia", "una cabecera");
 <body>
 	<%@include file="WEB-INF/fragmentos/menu.jsp"%>
 	<main class="container-fluid">
-		<c:
+		<c:if test="${cont > 10 }">
+			<h1>Hay muchos</h1>
+		</c:if>
 		<p>
 			Cont:
 			<%=++cont + 1%></p>
@@ -43,13 +45,13 @@ response.setHeader("X-La-Mia", "una cabecera");
 		</p>
 		<ul>
 			<%
-			for (int i = 1; i <= 10; i++) {
+			for (int i = 1; i <= 5; i++) {
 				String nam = "Nombre " + i;
 			%>
 			<li>Elemento <%=nam%>
 				<ol class="list-group">
 					<%
-					for (int j = 1; j <= 5; j++) {
+					for (int j = 1; j <= 3; j++) {
 					%>
 					<li class="list-group-item">Hijo <%= j %></li>
 					<%
