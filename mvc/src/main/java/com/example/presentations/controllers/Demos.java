@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.example.domains.contracts.ActorService;
 import com.example.domains.entities.Actor;
+import com.example.domains.exceptions.InvalidDataException;
 import com.example.domains.exceptions.NotFoundException;
 
 // http://localhost:8080/demos/params/1?nom=kk
@@ -43,14 +44,14 @@ public class Demos {
 	
 	@GetMapping("/otro/{id}")
 	public ModelAndView otro(@PathVariable int id,
-			@RequestParam(required = false, defaultValue = "") String modo) { 
+			@RequestParam(required = false, defaultValue = "") String modo) throws NotFoundException, InvalidDataException { 
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("msg", "Datos del actor");
-		try {
+//		try {
 			mv.addObject("actor", dao.getOne(id));
-		} catch (NotFoundException e) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-		}
+//		} catch (NotFoundException e) {
+//			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+//		}
 		switch (modo) {
 		case "":
 			mv.setViewName("demos");
@@ -61,6 +62,10 @@ public class Demos {
 		default:
 			mv.setViewName("redirect:/demos/saluda");
 			break;
+		case "error":
+			throw new InvalidDataException("Esto es un error forzado");
+		case "excepcion":
+			throw new NullPointerException("Esto es un error forzado");
 		}
 		return mv;
 	}

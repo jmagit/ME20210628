@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.domains.contracts.ActorService;
@@ -23,6 +25,11 @@ public class ActorServiceImpl implements ActorService {
 	@Override
 	public List<Actor> getAll() {
 		return dao.findAll();
+	}
+
+	@Override
+	public Page<Actor> getAll(Pageable pageable) {
+		return dao.findAll(pageable);
 	}
 
 	@Override
