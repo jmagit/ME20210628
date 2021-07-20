@@ -29,6 +29,27 @@
 				</tr>
 			</c:forEach>
 		</table>
+		<ul class="pagination">
+		  	<c:if test = "${page.hasPrevious()}">
+			    <li class="page-item">
+			    	<a class="page-link" href="${pageContext.request.contextPath}/actores?page=${page.getNumber()-1}">
+			    		<span aria-hidden="true">&laquo;</span>
+			    	</a>
+			    </li>
+			</c:if>
+			<c:forEach var = "i" begin = "0" end = "${page.getTotalPages() -1}">
+		    	<li class="page-item<c:if test = "${i==page.getNumber()}"> active</c:if>">
+		    		<a class="page-link" href="${pageContext.request.contextPath}/actores?page=${i}">${i + 1}</a>
+		    	</li>
+			</c:forEach>
+		  	<c:if test = "${page.hasNext()}">
+			    <li class="page-item">
+			    	<a class="page-link" href="${pageContext.request.contextPath}/actores?page=${page.getNumber()+1}">
+			    		<span aria-hidden="true">&raquo;</span>
+			    	</a>
+			    </li>
+			</c:if>
+		</ul>		
 	</main>
 	<%@include file="../../fragmentos/scripting.jsp"%>
 </body>

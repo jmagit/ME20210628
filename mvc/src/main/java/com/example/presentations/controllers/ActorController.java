@@ -26,7 +26,7 @@ public class ActorController {
 	public String list(Model model, @PageableDefault(size = 10, sort = { "firstName", "lastName" }) Pageable pageable) {
 		Page<Actor> rslt = dao.getAll(pageable);
 		model.addAttribute("listado", rslt.getContent());
-		model.addAttribute("rslt", rslt);
+		model.addAttribute("page", rslt);
 		return "actor/list";
 	}
 
