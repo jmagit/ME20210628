@@ -8,7 +8,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.jsp"><img alt="Logotipo de LogiRail" src="images/logo.png" height="40"></a>
+      <a class="navbar-brand" href="index.jsp"><img alt="Logotipo de LogiRail" src="/images/logo.png" height="40"></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
