@@ -32,25 +32,25 @@ public class MvcApplication implements CommandLineRunner {
 		SpringApplication.run(MvcApplication.class, args);
 	}
 
-	@Value("${modo}") 
-	private String modo;
+//	@Value("${modo}") 
+//	private String modo;
 	
 //	@Autowired(required = false)
 //	Servicio srv;
 //	@Autowired(required = false)
 //	Servicio srv2;
 	
-	@Autowired
-	ActorRepository dao;
-
-	@Autowired
-	PeliculasRepository daoPelis;
-	
-	@Autowired
-	ActorService srvActor;
-	
-	@Autowired 
-	JdbcTemplate jdbcTemplate;
+//	@Autowired
+//	ActorRepository dao;
+//
+//	@Autowired
+//	PeliculasRepository daoPelis;
+//	
+//	@Autowired
+//	ActorService srvActor;
+//	
+//	@Autowired 
+//	JdbcTemplate jdbcTemplate;
 	
 	@Transactional
 	@Override
@@ -91,20 +91,20 @@ public class MvcApplication implements CommandLineRunner {
 //			System.out.println(actor.getErrorsMessage());
 //		}
 //		dao.save(actor);
-		System.out.println(jdbcTemplate.queryForObject("select count(*) from actor", Integer.class));
-		List<Actor> actors = this.jdbcTemplate.query(
-		        "select actor_id, first_name, last_name from actor",
-		        (rs, ind) -> new Actor(rs.getInt(1), rs.getString(2), rs.getString(3)));
-		actors.forEach(System.out::println);
+//		System.out.println(jdbcTemplate.queryForObject("select count(*) from actor", Integer.class));
+//		List<Actor> actors = this.jdbcTemplate.query(
+//		        "select actor_id, first_name, last_name from actor",
+//		        (rs, ind) -> new Actor(rs.getInt(1), rs.getString(2), rs.getString(3)));
+//		actors.forEach(System.out::println);
 	}
 
-	@Bean
-	public Repositorio getRepositorio(@Value("${modo}") String modo) {
-		System.out.println(modo);
-		if("test".equals(modo)) {
-			return new RepositorioMockImpl();
-		} else {
-			return new RepositorioImpl();
-		}
-	}
+//	@Bean
+//	public Repositorio getRepositorio(@Value("${modo}") String modo) {
+//		System.out.println(modo);
+//		if("test".equals(modo)) {
+//			return new RepositorioMockImpl();
+//		} else {
+//			return new RepositorioImpl();
+//		}
+//	}
 }
