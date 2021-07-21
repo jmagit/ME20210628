@@ -15,7 +15,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li <%= request.getRequestURI().endsWith("index.jsp")?"class='active'":"" %>><a href="/">Inicio <span class="sr-only">(current)</span></a></li>
-        <li <%= request.getRequestURI().endsWith("listado.jsp")?"class='active'":"" %>><a href="/actores">actores</a></li>
+        <li <%= request.getRequestURI().contains("/actor")?"class='active'":"" %>><a href="/actores">actores</a></li>
         <li <%= request.getRequestURI().endsWith("actor-list.jsp")?"class='active'":"" %>><a href="/categorias">categorias</a></li>
         <li <%= request.getRequestURI().endsWith("acercade.jsp")?"class='active'":"" %>><a href="acercade.jsp">Acerca de</a></li>
         <li><a href="pagina/bien/educada">Saluda</a></li>
@@ -41,4 +41,3 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-<%= request.getRequestURI() %>
