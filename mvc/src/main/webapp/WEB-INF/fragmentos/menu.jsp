@@ -8,15 +8,15 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.jsp"><img alt="Logotipo de LogiRail" src="/images/logo.png" height="40"></a>
+      <a class="navbar-brand" href="/"><img alt="Logotipo de LogiRail" src="/images/logo.png" height="40"></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li <%= request.getRequestURI().endsWith("index.jsp")?"class='active'":"" %>><a href="index.jsp">Inicio <span class="sr-only">(current)</span></a></li>
-        <li <%= request.getRequestURI().endsWith("listado.jsp")?"class='active'":"" %>><a href="listado.jsp">JDBC</a></li>
-        <li <%= request.getRequestURI().endsWith("actor-list.jsp")?"class='active'":"" %>><a href="actor-list.jsp">Actores</a></li>
+        <li <%= request.getRequestURI().endsWith("index.jsp")?"class='active'":"" %>><a href="/">Inicio <span class="sr-only">(current)</span></a></li>
+        <li <%= request.getRequestURI().endsWith("listado.jsp")?"class='active'":"" %>><a href="/actores">actores</a></li>
+        <li <%= request.getRequestURI().endsWith("actor-list.jsp")?"class='active'":"" %>><a href="/categorias">categorias</a></li>
         <li <%= request.getRequestURI().endsWith("acercade.jsp")?"class='active'":"" %>><a href="acercade.jsp">Acerca de</a></li>
         <li><a href="pagina/bien/educada">Saluda</a></li>
       <form class="navbar-form navbar-left">
@@ -41,3 +41,4 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+<%= request.getRequestURI() %>
