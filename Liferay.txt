@@ -5,7 +5,7 @@
  
 * Docker https://docs.docker.com/docker-for-windows/install/
 * Docker compose (Debería venir con la instalación de Windows)
-* Git
+* Git https://git-scm.com/
 * Descarga repositorio: https://github.com/igor-baiborodine/docker-liferay-portal-ce
 * git clone https://github.com/igor-baiborodine/docker-liferay-portal-ce
  
