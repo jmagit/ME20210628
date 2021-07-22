@@ -33,7 +33,8 @@
 		%>
 		<form method="post">
 			<div class="form-group">
-				<label for="firstName">Nombre:</label> <input id="firstName" class="form-control" NAME="firstName" size="45"
+				<label for="firstName">Nombre:</label> 
+				<input id="firstName" class="form-control" NAME="firstName" size="45"
 					value='<%=item.getFirstName() == null ? "" : item.getFirstName()%>'>
 			</div>
 			<div class="form-group">

@@ -31,11 +31,19 @@
 				<sf:errors path="lastName" cssClass="invalid-feedback" />
 			</div>
 			<div class="form-group">            
-				<input class="btn btn-primary" type="submit" value="Enviar"/>
+				<input id="btnEnviar" class="btn btn-primary" type="submit" value="Enviar"/>
 				<a href="${pageContext.request.contextPath}/actores" class="btn btn-primary">Volver</a>   
 			</div>
 		</sf:form>
 	</main>
 	<%@include file="../../fragmentos/scripting.jsp"%>
+	<script type="text/javascript">
+	document.getElementById('elemento').addEventListener('submit', function(ev) {
+		let valid = true;
+		valid = confirm("¿es valido?");
+		if(!valid)
+			ev.preventDefault();
+	});		
+	</script>
 </body>
 </html>
