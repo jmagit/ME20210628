@@ -24,6 +24,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.example.domains.contracts.ActorService;
 import com.example.domains.entities.Actor;
 import com.example.domains.exceptions.BadRequestException;
+import com.example.domains.exceptions.InvalidDataException;
 import com.example.domains.exceptions.NotFoundException;
 
 import org.springframework.http.HttpStatus;
@@ -32,36 +33,38 @@ import org.springframework.http.HttpStatus;
 @RequestMapping("/api/actores")
 public class ActorResource {
 	@Autowired
-	private ActorService dao;
+	private ActorService srv;
 
 	@GetMapping
 	public List<Actor> getAll() {
-		// …
+		return srv.getAll();
 	}
 
 	@GetMapping(path = "/{id}")
 	public Actor getOne(@PathVariable int id) throws NotFoundException {
-		// …
+		return srv.getOne(id);
 	}
 	@PostMapping
-	public ResponseEntity<Object> create(@Valid @RequestBody Actor item) throws BadRequestException {
-		// …
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-			.buildAndExpand(newItem.getActorId()).toUri();
-		return ResponseEntity.created(location).build();
-
+	@ResponseStatus(HttpStatus.CREATED)
+	public void create(@Valid @RequestBody Actor item) throws BadRequestException, InvalidDataException {
+		srv.add(item);
+//		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+//			.buildAndExpand(newItem.getActorId()).toUri();
+//		return ResponseEntity.created(location).build();
 	}
 
 	@PutMapping("/{id}")
 	@ResponseStatus(HttpStatus.ACCEPTED)
-	public void update(@PathVariable int id, @Valid @RequestBody Actor item) throws BadRequestException, NotFoundException {
-		// …
+	public void update(@PathVariable int id, @Valid @RequestBody Actor item) throws BadRequestException, NotFoundException, InvalidDataException {
+		if(id != item.getActorId())
+			throw new BadRequestException("No coinciden los identificadores");
+		srv.modify(item);
 	}
 
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void delete(@PathVariable int id) {
-		// ..
+	public void delete(@PathVariable int id) throws NotFoundException {
+		srv.removeById(id);
 	}
 
 }

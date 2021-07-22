@@ -10,6 +10,7 @@ import org.hibernate.validator.constraints.Length;
 
 import com.example.domains.core.Entidad;
 import com.example.domains.core.NIF;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -47,6 +48,7 @@ public class Actor extends Entidad<Actor> implements Serializable {
 	//bi-directional many-to-one association to FilmActor
 	@OneToMany(mappedBy="actor", cascade = CascadeType.ALL /*, fetch = FetchType.EAGER*/)
 	@Valid
+	@JsonIgnore
 	private List<FilmActor> filmActors;
 
 	public Actor() {
