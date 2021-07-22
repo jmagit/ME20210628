@@ -5,9 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ejemplos del Curso</title>
 <link rel="stylesheet" href="/css/tema.css" >
+<script type="text/javascript">
+function mensaje(msg) {
+	window.alert(msg);
+}
+//mensaje('En la cabecera');
+</script>
 </head>
 <body>
 <nav class="navbar navbar-default">
+<script type="text/javascript">
+//	mensaje('Paso 1');
+</script>
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -62,13 +71,31 @@
 </nav>
 <main class="container-fluid">
 <div class="row">
-<h1 class="col-xs-12 col-md-3">Hola mundoss</h1>
+<h1 id="saludo" class="col-xs-12 col-md-3">Hola mundoss</h1>
 <p  class="col-xs-12 col-md-9 errorMsg"><span class="glyphicon glyphicon-piggy-bank" aria-hidden="true"></span> Solo para verlo</p>
 </div>
+<script type="text/javascript">
+	document.getElementById("saludo").innerHTML = '<b>Adios</b> mundo';
+//	mensaje('Paso 2');
+</script>
 <a href="/#" class="btn btn-danger">Hipervinculo</a>
+<button type="button" onclick="mensaje('tienes una multa')">Caro</button>
+<button id="bueno" type="button">No es intrusivo</button>
+
 </main>
 
 <script type="text/javascript" src="vendors/jquery.min.js"></script>
 <script type="text/javascript" src="vendors/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	function buenoClick() {
+		mensaje('este no tiene una multa');
+		var btn = document.getElementById("bueno");
+		btn.removeEventListener('click', buenoClick);
+		//btn.disabled = true;
+	}
+	document.getElementById("bueno").addEventListener('click', buenoClick);
+//	mensaje('Paso 3');
+</script>
+
 </body>
 </html>

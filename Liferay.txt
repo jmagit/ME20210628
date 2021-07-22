@@ -1,0 +1,25 @@
+
+* Navegador Web
+* Conexión a internet sin Proxy
+* Lector de PDF
+ 
+* Docker https://docs.docker.com/docker-for-windows/install/
+* Docker compose (Debería venir con la instalación de Windows)
+* Git
+* Descarga repositorio: https://github.com/igor-baiborodine/docker-liferay-portal-ce
+* git clone https://github.com/igor-baiborodine/docker-liferay-portal-ce
+ 
+Comprobaciones:
+* docker ps
+* docker run --rm hello-world
+* docker-compose --help
+ 
+Instalación:
+cd docker-liferay-portal-ce/compose/liferay-mysql
+docker-compose up -d
+ 
+Login:
+* http://localhost:80/
+* Sign In
+* user: test@liferay.com
+* password: test
