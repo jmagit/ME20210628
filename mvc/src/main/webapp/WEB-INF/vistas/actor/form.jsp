@@ -11,24 +11,27 @@
 <body>
 	<%@include file="../../fragmentos/menu.jsp"%>
 	<main class="container-fluid">
-		<sf:form modelAttribute="elemento" action="${pageContext.request.contextPath}/${action}">
+		<sf:form modelAttribute="elemento" action="${pageContext.request.contextPath}/${action}" novalidate="true">
 			<sf:errors path="*" cssClass="alert alert-danger" element="div"/>
 			<div class="form-group">
 				<sf:label path="actorId">Código</sf:label>
-				<sf:input path="actorId" cssClass="form-control" cssErrorClass="is-invalid form-control" />
+				<sf:input type="number" required="true" path="actorId" cssClass="form-control" cssErrorClass="is-invalid form-control" />
 				<sf:errors path="actorId" cssClass="invalid-feedback" />
+				<div id="actorIdErr" class="is-invalid"></div>
 			</div>
 			<div class="form-group">
 				<sf:label path="firstName">Nombre</sf:label>
-				<sf:input path="firstName" cssClass="form-control" 
+				<sf:input required="true" minlength="2" maxlength="45" path="firstName" cssClass="form-control" 
 					cssErrorClass="is-invalid form-control"/>
 				<sf:errors path="firstName" cssClass="invalid-feedback" />
+				<div id="firstNameErr" class="is-invalid"></div>
 			</div>
 			<div class="form-group">
 				<sf:label path="lastName">Apellidos</sf:label>
-				<sf:input path="lastName" cssClass="form-control" 
+				<sf:input required="true" maxlength="45" path="lastName" cssClass="form-control" 
 					cssErrorClass="is-invalid form-control"/>
 				<sf:errors path="lastName" cssClass="invalid-feedback" />
+				<div id="lastNameErr" class="is-invalid"></div>
 			</div>
 			<div class="form-group">            
 				<input id="btnEnviar" class="btn btn-primary" type="submit" value="Enviar"/>
@@ -40,10 +43,56 @@
 	<script type="text/javascript">
 	document.getElementById('elemento').addEventListener('submit', function(ev) {
 		let valid = true;
-		valid = confirm("¿es valido?");
+		let form = ev.target;
+		for(let cmp in form) {
+			if(cmp == undefined || isNaN(parseInt(cmp))) break;
+			let value = form[cmp].value;
+			let msg = '';
+			switch(form[cmp].name) {
+			case 'actorId':				
+				if(value == '' ) {
+					msg = 'Es obligatorio';
+				} else if(isNaN(parseInt(value))) {
+					msg = 'Debe ser númerico';
+				}
+				document.getElementById('actorIdErr').textContent = msg;
+				if(msg !== '') valid = false;
+				break;
+			case 'firstName':				
+				if(value == '' ) {
+					msg = 'Es obligatorio';
+				} else if(2 > value.length || value.length > 45) {
+					msg = 'Debe tener entre 2 y 45 caracteres';
+				}
+				document.getElementById('firstNameErr').textContent = msg;
+				if(msg !== '') valid = false;
+				break;
+			case 'lastName':				
+				if(value == '' ) {
+					msg = 'Es obligatorio';
+				} else if(value.length > 45) {
+					msg = 'Debe tener entre 2 y 45 caracteres';
+				}
+				document.getElementById('lastNameErr').textContent = msg;
+				if(msg !== '') valid = false;
+				break;
+			}
+		}
 		if(!valid)
 			ev.preventDefault();
-	});		
-	</script>
+	});	
+	/*	
+	document.getElementById('firstName').addEventListener('change', function(ev) {
+		let value = ev.target.value;
+		let msg = '';
+		if(value == '' ) {
+			msg = 'Es obligatorio';
+		} else if(2 > value.length || value.length > 45) {
+			msg = 'Debe tener entre 2 y 45 caracteres';
+		}
+		document.getElementById('firstNameErr').textContent = msg;
+	});
+*/
+</script>
 </body>
 </html>
