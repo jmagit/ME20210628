@@ -1,0 +1,81 @@
+get http://localhost:8080/api/actores?page=1&size=10&sort=firstName,lastName
+Accept: application/json
+
+###
+
+get http://localhost:8080//api/actores/1
+Accept: application/json
+
+###
+
+
+post http://localhost:8080//api/actores/
+Content-Type: application/json
+
+{
+    "firstName": "     ",
+    "lastName": "00000"
+}
+
+###
+
+put http://localhost:8080//api/actores/209
+Content-Type: application/json
+
+{
+  "actorId": 209,
+  "firstName": "00000111111",
+  "lastName": "00000"
+}
+
+###
+
+DELETE http://localhost:8080//api/actores/209
+Accept: application/json
+
+###
+get http://localhost:8080//api/actores/
+Accept: application/xml
+
+###
+
+get http://localhost:8080//api/actores/210
+Accept: application/xml
+
+###
+
+
+post http://localhost:8080//api/actores/
+Content-Type: application/xml
+
+<Actor>
+  <firstName>0000</firstName>
+  <lastName>GUINESS</lastName>
+</Actor>
+
+###
+
+put http://localhost:8080//api/actores/210
+Content-Type: application/xml
+
+<Actor>
+  <actorId>210</actorId>
+  <firstName>0000</firstName>
+  <lastName>00000000</lastName>
+</Actor>
+
+###
+
+DELETE http://localhost:8080//api/actores/210
+Accept: application/xml
+
+###
+
+get http://localhost:8080/rest
+Accept: application/json
+
+
+###
+
+get http://localhost:8080/rest/languages
+Accept: application/json

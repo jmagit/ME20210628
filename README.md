@@ -53,3 +53,11 @@
 
 <https://sourceforge.net/projects/hibernate/files/hibernate-validator/7.0.0.Final/hibernate-validator-7.0.0.Final-dist.zip/download>
 
+
+### Enlaces
+
+<https://www.w3schools.com/>
+
+<https://es.javascript.info/>
+
+<https://www.javatpoint.com/>
